@@ -102,7 +102,7 @@ def register():
         if result.scalar():
             flash("You've already signed up with that email, log in instead!")
             return redirect(url_for("login"))
-        password = generate_password_hash(form.password.data, "scrypt")
+        password = generate_password_hash(form.password.data, "pbkdf2:sha256:80000")
         new_user = User(
             name=name, email=mail, password=password
         )
